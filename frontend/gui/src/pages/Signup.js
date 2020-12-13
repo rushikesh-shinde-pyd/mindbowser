@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 
 // local imports
-import { getToken } from "../utility";
+import { getToken, validateData, validatePasswords } from "../utility";
 import InputItem from "../components/InputItem";
 import { signup } from "../redux/actions/signup.actions";
 import { login } from "../components/Urls";
@@ -29,47 +29,9 @@ const Signup = props => {
         confirm_password    : ''
     }
     const validate = values => {
-        const errors = {};
-
-        if (!values.first_name) errors.first_name = 'Required';
-        else if (values.first_name.length > 15) errors.first_name = 'Must be 15 characters or less';
-
-        if (!values.last_name) errors.last_name = 'Required';
-        else if (values.last_name.length > 20) errors.last_name = 'Must be 20 characters or less';
-
-        if (!values.address) errors.address = 'Required';
-        else if (values.address.length > 20) errors.address = 'Must be 20 characters or less';
-
-        if (!values.company) errors.company = 'Required';
-        else if (values.company.length > 20) errors.company = 'Must be 20 characters or less';
-
-        if (!values.dob) errors.dob = 'Required';
-        else if (values.dob) {
-            if (new Date(values.dob) > new Date()) errors.dob = 'Invalid date';
-        }
-
-        if (!values.email) errors.email = 'Required';
-        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) errors.email = 'Invalid email address';
-        
-        if (!values.password) {
-            errors.password = 'Required';
-        } else if (values.password.length > 20) {
-            errors.password = 'Must be 20 characters or less';
-        } else if (values.password.length < 8) {
-            errors.password = 'Password length must be atleast 8 characters';
-        }
-        
-        if (!values.confirm_password) {
-            errors.confirm_password = 'Required';
-        } else if (values.confirm_password.length > 20) {
-            errors.confirm_password = 'Must be 20 characters or less';
-        } else if (values.password !== values.confirm_password) {
-            errors.confirm_password = 'Password mismatch';
-        } else if (values.confirm_password.length < 8) {
-            errors.confirm_password = 'Password length must be atleast 8 characters';
-        }
-
-        return errors;
+        const extendedErrors = validateData(values)
+        const passwordErrors = validatePasswords(values)
+        return {...extendedErrors, ...passwordErrors};
     };
     const formik = useFormik({
         initialValues,

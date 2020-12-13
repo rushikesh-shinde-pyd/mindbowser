@@ -9,7 +9,7 @@ import InputItem from "../components/InputItem";
 import fetchEmp from '../redux/actions/fetchEmp.actions';
 import { addUser, add_complete } from '../redux/actions/add.actions';
 import { useParams } from 'react-router-dom';
-import { getOffset } from '../utility';
+import { validateData, validatePasswords, getOffset, validateCity, validateMobile } from '../utility';
 
 
 const AddEmpForm = props => {
@@ -40,52 +40,19 @@ const AddEmpForm = props => {
         const errors = {};
 
         if (!values.emp_id) errors.emp_id = 'Required'
-
-        if (!values.first_name) errors.first_name = 'Required';
-        else if (values.first_name.length > 15) errors.first_name = 'Must be 15 characters or less';
-
-        if (!values.last_name) errors.last_name = 'Required';
-        else if (values.last_name.length > 20) errors.last_name = 'Must be 20 characters or less';
-
-        if (!values.address) errors.address = 'Required';
-        else if (values.address.length > 20) errors.address = 'Must be 20 characters or less';
-
-        if (!values.mobile) errors.mobile = 'Required';
-        else if (!/^[789][0-9]{9}$/i.test(values.mobile)) errors.mobile = 'Invalid mobile number';
-
-        if (!values.company) errors.company = 'Required';
-        else if (values.company.length > 20) errors.company = 'Must be 20 characters or less';
-
-        if (!values.city) errors.city = 'Required';
-        else if (values.city.length > 20) errors.city = 'Must be 20 characters or less';
-
-        if (!values.dob) errors.dob = 'Required';
-        else if (values.dob) {
-            if (new Date(values.dob) > new Date()) errors.dob = 'Invalid date';
-        }
-
-        if (!values.email) errors.email = 'Required';
-        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) errors.email = 'Invalid email address';
+        const extendedErrors = validateData(values)
+        const extendedErrors = validateData(values)
+        const mobileErrors = validateMobile(values)
+        const cityErrors = validateCity(values)
+        const passwordErrors = validatePasswords(values)
         
-        if (!values.password) {
-            errors.password = 'Required';
-        } else if (values.password.length > 20) {
-            errors.password = 'Must be 20 characters or less';
-        } else if (values.password.length < 8) {
-            errors.password = 'Password length must be atleast 8 characters';
-        }
-        
-        if (!values.confirm_password) {
-            errors.confirm_password = 'Required';
-        } else if (values.confirm_password.length > 20) {
-            errors.confirm_password = 'Must be 20 characters or less';
-        } else if (values.password !== values.confirm_password) {
-            errors.confirm_password = 'Password mismatch';
-        } else if (values.confirm_password.length < 8) {
-            errors.confirm_password = 'Password length must be atleast 8 characters';
-        }
-
-        return errors;
+        return {
+            ...errors, 
+            ...extendedErrors, 
+            ...passwordErrors,
+            ...mobileErrors,
+            ...cityErrors
+        };
     };
     const formik = useFormik({
         initialValues,
