@@ -39,16 +39,10 @@ const UpdateEmpForm = props => {
 
         if (!values.emp_id) errors.emp_id = 'Required'
         const extendedErrors = validateData(values)
-        const extendedErrors = validateData(values)
         const mobileErrors = validateMobile(values)
         const cityErrors = validateCity(values)
         
-        return {
-            ...errors, 
-            ...extendedErrors, 
-            ...mobileErrors,
-            ...cityErrors
-        };
+        return {...errors, ...extendedErrors, ...mobileErrors, ...cityErrors};
     };
 
     const formik = useFormik({
@@ -100,12 +94,7 @@ const UpdateEmpForm = props => {
             ?   <form onSubmit={formik.handleSubmit}>
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Employee ID" 
-                                type="text" 
-                                id="emp_id"
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Employee ID" type="text" id="emp_id" formik={formik}/>
                             {
                                 formik.touched.emp_id 
                                 && formik.errors.emp_id 
@@ -113,12 +102,7 @@ const UpdateEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-3">
-                            <InputItem 
-                                placeholder="First name" 
-                                type="text" 
-                                id="first_name" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="First name" type="text" id="first_name" formik={formik}/>
                             {
                                 formik.touched.first_name 
                                 && formik.errors.first_name 
@@ -126,12 +110,7 @@ const UpdateEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-3">
-                            <InputItem 
-                                placeholder="Last name" 
-                                type="text" 
-                                id="last_name" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Last name" type="text" id="last_name" formik={formik}/>
                             {
                                 formik.touched.last_name 
                                 && formik.errors.last_name 
@@ -141,12 +120,7 @@ const UpdateEmpForm = props => {
                     </div>
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Email" 
-                                type="email" 
-                                id="email" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Email" type="email" id="email" formik={formik}/>
                             {
                                 formik.touched.email 
                                 && formik.errors.email 
@@ -154,12 +128,7 @@ const UpdateEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Address" 
-                                type="text" 
-                                id="address" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Address" type="text" id="address" formik={formik}/>
                             {
                                 formik.touched.address 
                                 && formik.errors.address 
@@ -169,13 +138,7 @@ const UpdateEmpForm = props => {
                     </div>
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <input 
-                                type="date" 
-                                id="dob" 
-                                className="form-control"
-                                min="1980-01-01" 
-                                max="2010-01-11" 
-                                value={formik.values.dob} 
+                            <input type="date" id="dob" className="form-control"min="1980-01-01" max="2010-01-11" value={formik.values.dob} 
                                 placeholder="Date of birth" 
                                 onBlur={formik.handleBlur} 
                                 onChange={formik.handleChange} 
@@ -190,11 +153,7 @@ const UpdateEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <input 
-                                type="text" 
-                                id="mobile"    
-                                className="form-control"
-                                value={formik.values.mobile} 
+                            <input type="text" id="mobile" className="form-control" value={formik.values.mobile} 
                                 placeholder="Mobile number" 
                                 pattern="[789][0-9]{9}"
                                 onBlur={formik.handleBlur} 
@@ -213,12 +172,7 @@ const UpdateEmpForm = props => {
             
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Company" 
-                                type="text" 
-                                id="company" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Company" type="text" id="company"  formik={formik}/>
                             {
                                 formik.touched.company 
                                 && formik.errors.company 
@@ -226,12 +180,7 @@ const UpdateEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="City" 
-                                type="text" 
-                                id="city" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="City" type="text" id="city"  formik={formik}/>
                             {
                                 formik.touched.city 
                                 && formik.errors.city 

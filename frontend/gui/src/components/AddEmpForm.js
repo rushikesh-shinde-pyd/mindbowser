@@ -41,18 +41,10 @@ const AddEmpForm = props => {
 
         if (!values.emp_id) errors.emp_id = 'Required'
         const extendedErrors = validateData(values)
-        const extendedErrors = validateData(values)
         const mobileErrors = validateMobile(values)
         const cityErrors = validateCity(values)
         const passwordErrors = validatePasswords(values)
-        
-        return {
-            ...errors, 
-            ...extendedErrors, 
-            ...passwordErrors,
-            ...mobileErrors,
-            ...cityErrors
-        };
+        return {...errors, ...extendedErrors, ...passwordErrors, ...mobileErrors, ...cityErrors};
     };
     const formik = useFormik({
         initialValues,
@@ -100,12 +92,7 @@ const AddEmpForm = props => {
                <form onSubmit={formik.handleSubmit}>
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Employee ID" 
-                                type="text" 
-                                id="emp_id" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Employee ID" type="text" id="emp_id" formik={formik}/>
                             {
                                 formik.touched.emp_id 
                                 && formik.errors.emp_id 
@@ -113,12 +100,7 @@ const AddEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-3">
-                            <InputItem 
-                                placeholder="First name" 
-                                type="text" 
-                                id="first_name" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="First name" type="text" id="first_name" formik={formik}/>
                             {
                                 formik.touched.first_name 
                                 && formik.errors.first_name 
@@ -126,12 +108,7 @@ const AddEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-3">
-                            <InputItem 
-                                placeholder="Last name" 
-                                type="text" 
-                                id="last_name" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Last name" type="text" id="last_name" formik={formik}/>
                             {
                                 formik.touched.last_name 
                                 && formik.errors.last_name 
@@ -141,12 +118,7 @@ const AddEmpForm = props => {
                     </div>
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Email" 
-                                type="email" 
-                                id="email" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Email" type="email" id="email" formik={formik}/>
                             {
                                 formik.touched.email 
                                 && formik.errors.email 
@@ -154,12 +126,7 @@ const AddEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Address" 
-                                type="text" 
-                                id="address" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Address" type="text" id="address" formik={formik}/>
                             {
                                 formik.touched.address 
                                 && formik.errors.address 
@@ -175,12 +142,7 @@ const AddEmpForm = props => {
                                 className="form-control"
                                 min="1980-01-01" 
                                 max="2010-01-11" 
-                                value={formik.values.dob} 
-                                placeholder="Date of birth" 
-                                onBlur={formik.handleBlur} 
-                                onChange={formik.handleChange} 
-                            />
-                            <small id="mobilehelp" className="form-text text-muted">
+                                value={formik.values.dob} placeholder="Date of birth" onBlur={formik.handleBlur} onChange={formik.handleChange} /><small id="mobilehelp" className="form-text text-muted">
                                 For Date of birth choose between 1980-01-01 and 2010-01-11.
                             </small>
                             {
@@ -190,16 +152,11 @@ const AddEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <input 
-                                type="text" 
-                                id="mobile"    
-                                className="form-control"
-                                value={formik.values.mobile} 
+                            <input type="text" id="mobile" className="form-control" value={formik.values.mobile} 
                                 placeholder="Mobile number" 
                                 pattern="[789][0-9]{9}"
                                 onBlur={formik.handleBlur} 
-                                onChange={formik.handleChange} 
-                            />
+                                onChange={formik.handleChange} />
                             <small id="mobileHelp" className="form-text text-muted">
                                 Requested format [789][0-9]&#123;9&#125;
                             </small>
@@ -213,12 +170,7 @@ const AddEmpForm = props => {
             
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Company" 
-                                type="text" 
-                                id="company" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Company" type="text" id="company" formik={formik}/>
                             {
                                 formik.touched.company 
                                 && formik.errors.company 
@@ -226,12 +178,7 @@ const AddEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="City" 
-                                type="text" 
-                                id="city" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="City" type="text" id="city" formik={formik}/>
                             {
                                 formik.touched.city 
                                 && formik.errors.city 
@@ -241,12 +188,7 @@ const AddEmpForm = props => {
                     </div>
                     <div className="form-row">
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Password" 
-                                type="password" 
-                                id="password" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Password" type="password" id="password" formik={formik}/>
                             {
                                 formik.touched.password 
                                 && formik.errors.password 
@@ -254,12 +196,7 @@ const AddEmpForm = props => {
                             }
                         </div>
                         <div className="form-group col-sm-6">
-                            <InputItem 
-                                placeholder="Confirm password" 
-                                type="password" 
-                                id="confirm_password" 
-                                formik={formik}
-                            />
+                            <InputItem placeholder="Confirm password" type="password" id="confirm_password" formik={formik}/>
                             {
                                 formik.touched.confirm_password 
                                 && formik.errors.confirm_password 
