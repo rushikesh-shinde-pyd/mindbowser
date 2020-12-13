@@ -1,0 +1,3 @@
+export const FETCH_EMP_FAIL = "FETCH_EMP_FAIL" ;
+export const FETCH_EMP_START = "FETCH_EMP_START" ;
+export const FETCH_EMP_SUCCESS = "FETCH_EMP_SUCCESS" ;

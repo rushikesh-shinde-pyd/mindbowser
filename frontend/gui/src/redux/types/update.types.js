@@ -1,0 +1,4 @@
+export const UPDATE_START = 'UPDATE_START'
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
+export const UPDATE_FAIL = 'UPDATE_FAIL'
+export const UPDATE_COMPLETE = 'UPDATE_COMPLETE'
