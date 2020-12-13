@@ -38,7 +38,7 @@ export const updateObject = (oldObj, newObj) => {
 export const getOffset = offset => (5 * (offset - 1))
 
 export const validateData = values => {
-    const errors = {}
+    let errors = {}
 
     if (!values.first_name) errors.first_name = 'Required';
     else if (values.first_name.length > 15) errors.first_name = 'Must be 15 characters or less';
@@ -64,7 +64,7 @@ export const validateData = values => {
 }
 
 export const validatePasswords = values => {
-    const errors = {}
+    let errors = {}
 
     if (!values.password) {
         errors.password = 'Required';
@@ -89,7 +89,7 @@ export const validatePasswords = values => {
 
 
 export const validateMobile = values => {
-    const errors = {}
+    let errors = {}
     if (!values.mobile) errors.mobile = 'Required';
     else if (!/^[789][0-9]{9}$/i.test(values.mobile)) errors.mobile = 'Invalid mobile number';
 
@@ -97,7 +97,7 @@ export const validateMobile = values => {
 }
 
 export const validateCity = values => {
-    const errors = {}
+    let errors = {}
     if (!values.city) errors.city = 'Required';
     else if (values.city.length > 20) errors.city = 'Must be 20 characters or less';
     
